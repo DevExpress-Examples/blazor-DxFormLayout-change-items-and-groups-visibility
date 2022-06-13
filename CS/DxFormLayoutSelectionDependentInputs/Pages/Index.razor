@@ -1,0 +1,79 @@
+﻿@page "/"
+
+<style>
+    .MyFM {
+        width: 350px;
+    }
+</style>
+
+<DxFormLayout CssClass="MyFM" CaptionPosition=@CaptionPosition.Vertical>
+    <DxFormLayoutGroup Caption="Contact me through:">
+        <DxFormLayoutItem ColSpanMd="3">
+            <div class="custom-control custom-radio">
+                <input type="radio" name="customRadio" id="customRadio1" class="custom-control-input" checked=@IsEmail
+                       @onchange=@(() => { IsEmail = true; IsPost = IsPhone = false; }) />
+                <label class="custom-control-label" for="customRadio1">Email</label>
+            </div>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem ColSpanMd="9" Visible=@IsEmail>
+            <div class="custom-control custom-checkbox">
+                <DxCheckBox LabelPosition="LabelPosition.Right" @bind-Checked="IsAlternateEmail">Alternate Email</DxCheckBox>
+            </div>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem ColSpanMd="12">
+            <div class="custom-control custom-radio">
+                <input type="radio" name="customRadio" id="customRadio2" class="custom-control-input" checked=@IsPhone
+                       @onchange=@(() => { IsPhone = true; IsPost = IsEmail = false; }) />
+                <label class="custom-control-label" for="customRadio2">Phone</label>
+            </div>
+        </DxFormLayoutItem>
+        <DxFormLayoutItem ColSpanMd="12">
+            <div class="custom-control custom-radio">
+                <input type="radio" name="customRadio" id="customRadio3" class="custom-control-input" checked=@IsPost
+                       @onchange=@(() => { IsPost = true; IsEmail = IsPhone = false; }) />
+                <label class="custom-control-label" for="customRadio3">Postal Service</label>
+            </div>
+        </DxFormLayoutItem>
+    </DxFormLayoutGroup>
+    <DxFormLayoutGroup Visible=@IsEmail>
+        <DxFormLayoutItem Caption="Email:" ColSpanMd="12">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Retype Email:" ColSpanMd="12">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Alternate Email:" ColSpanMd="12" Visible=@IsAlternateEmail>
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Retype Alternate Email:" ColSpanMd="12" Visible=@IsAlternateEmail>
+            <DxTextBox />
+        </DxFormLayoutItem>
+    </DxFormLayoutGroup>
+    <DxFormLayoutGroup Visible=@IsPhone>
+        <DxFormLayoutItem Caption="Code:" ColSpanMd="3">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Phone:" ColSpanMd="9">
+            <DxTextBox />
+        </DxFormLayoutItem>
+    </DxFormLayoutGroup>
+    <DxFormLayoutGroup Visible=@IsPost>
+        <DxFormLayoutItem Caption="Address:" ColSpanMd="12">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="City:" ColSpanMd="8">
+            <DxTextBox />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Zip Code:" ColSpanMd="4">
+            <DxTextBox />
+        </DxFormLayoutItem>
+    </DxFormLayoutGroup>
+</DxFormLayout>
+
+@code {
+    bool IsEmail = true;
+    bool IsPhone = false;
+    bool IsPost = false;
+    bool isAlternateEmail = false;
+    bool IsAlternateEmail { get => isAlternateEmail; set { isAlternateEmail = value; InvokeAsync(StateHasChanged); } }
+}
