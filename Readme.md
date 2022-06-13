@@ -6,7 +6,7 @@
 <!-- default file list -->
 *Files to look at*:
 
-* [Index.razor](./CS/DxFormLayoutSlectionDependentInputs/Pages/Index.razor)
+* [Index.razor](./CS/DxFormLayoutSelectionDependentInputs/Pages/Index.razor)
 <!-- default file list end -->
 
 ### Blazor Form Layout - How to change the visibility of DxFormLayout's items and groups
