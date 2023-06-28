@@ -14,8 +14,7 @@
     <DxFormLayoutGroup Caption="Contact Me By:">
         <DxFormLayoutItem>
             <DxRadioGroup Items="@ContactMethod"
-                          Value="@PreferredContactMethod"
-                          ValueChanged="@((string value) => RadioValueChanged(value))" />
+                          @bind-Value="@PreferredContactMethod" />
         </DxFormLayoutItem>
         <DxFormLayoutItem CssClass="top-margin" Visible="@IsEmail">
             <DxCheckBox LabelPosition="LabelPosition.Right" @bind-Checked="IsAlternateEmail">Alternate Email</DxCheckBox>
@@ -57,21 +56,12 @@
 </DxFormLayout>
 
 @code {
-    bool IsEmail = true;
-    bool IsPhone = false;
-    bool IsPost = false;
+    bool IsEmail => PreferredContactMethod == "E-mail";
+    bool IsPhone => PreferredContactMethod == "Phone";
+    bool IsPost => PreferredContactMethod == "Post";
     bool isAlternateEmail = false;
     bool IsAlternateEmail { get => isAlternateEmail; set { isAlternateEmail = value; InvokeAsync(StateHasChanged); } }
 
     IEnumerable<string> ContactMethod = new[] { "E-mail", "Phone", "Post" };
     string PreferredContactMethod { get; set; } = "E-mail";
-
-    void RadioValueChanged(string newContactMethod) {
-        PreferredContactMethod = newContactMethod;
-        switch(PreferredContactMethod) {
-            case "E-mail": IsEmail = true; IsPhone = false; IsPost = false; break;
-            case "Phone": IsPhone = true; IsEmail = false; IsPost = false; break;
-            case "Post": IsPost = true; IsEmail = false; IsPhone = false; break;
-        }
-    }
 }
