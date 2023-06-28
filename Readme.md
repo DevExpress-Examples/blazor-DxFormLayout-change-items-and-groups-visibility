@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# Blazor Form Layout - Change the visibility of DxFormLayout's items and groups
+# Blazor Form Layout - Change visibility of the DxFormLayout's items and groups conditionally
 
 The following example shows how to implement a form that dynamically displays additional inputs based on user choice.
 
