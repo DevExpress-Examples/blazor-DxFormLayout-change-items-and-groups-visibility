@@ -1,55 +1,40 @@
 ﻿@page "/"
 
 <style>
-    .MyFM {
+    .my-fl {
         width: 350px;
+    }
+
+    .top-margin > div {
+        margin-top: unset !important;
     }
 </style>
 
-<DxFormLayout CssClass="MyFM" CaptionPosition=@CaptionPosition.Vertical>
-    <DxFormLayoutGroup Caption="Contact me through:">
-        <DxFormLayoutItem ColSpanMd="3">
-            <div class="custom-control custom-radio">
-                <input type="radio" name="customRadio" id="customRadio1" class="custom-control-input" checked=@IsEmail
-                       @onchange=@(() => { IsEmail = true; IsPost = IsPhone = false; }) />
-                <label class="custom-control-label" for="customRadio1">Email</label>
-            </div>
+<DxFormLayout CssClass="my-fl" CaptionPosition="CaptionPosition.Vertical">
+    <DxFormLayoutGroup Caption="Contact Me By:">
+        <DxFormLayoutItem>
+            <DxRadioGroup Items="@ContactMethod"
+                          @bind-Value="@PreferredContactMethod" />
         </DxFormLayoutItem>
-        <DxFormLayoutItem ColSpanMd="9" Visible=@IsEmail>
-            <div class="custom-control custom-checkbox">
-                <DxCheckBox LabelPosition="LabelPosition.Right" @bind-Checked="IsAlternateEmail">Alternate Email</DxCheckBox>
-            </div>
-        </DxFormLayoutItem>
-        <DxFormLayoutItem ColSpanMd="12">
-            <div class="custom-control custom-radio">
-                <input type="radio" name="customRadio" id="customRadio2" class="custom-control-input" checked=@IsPhone
-                       @onchange=@(() => { IsPhone = true; IsPost = IsEmail = false; }) />
-                <label class="custom-control-label" for="customRadio2">Phone</label>
-            </div>
-        </DxFormLayoutItem>
-        <DxFormLayoutItem ColSpanMd="12">
-            <div class="custom-control custom-radio">
-                <input type="radio" name="customRadio" id="customRadio3" class="custom-control-input" checked=@IsPost
-                       @onchange=@(() => { IsPost = true; IsEmail = IsPhone = false; }) />
-                <label class="custom-control-label" for="customRadio3">Postal Service</label>
-            </div>
+        <DxFormLayoutItem CssClass="top-margin" Visible="@IsEmail">
+            <DxCheckBox LabelPosition="LabelPosition.Right" @bind-Checked="IsAlternateEmail">Alternate E-mail</DxCheckBox>
         </DxFormLayoutItem>
     </DxFormLayoutGroup>
-    <DxFormLayoutGroup Visible=@IsEmail>
-        <DxFormLayoutItem Caption="Email:" ColSpanMd="12">
+    <DxFormLayoutGroup Visible="@IsEmail" Caption="Contact Details:">
+        <DxFormLayoutItem Caption="E-mail:" ColSpanMd="12">
             <DxTextBox />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Retype Email:" ColSpanMd="12">
+        <DxFormLayoutItem Caption="Retype E-mail:" ColSpanMd="12">
             <DxTextBox />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Alternate Email:" ColSpanMd="12" Visible=@IsAlternateEmail>
+        <DxFormLayoutItem Caption="Alternate E-mail:" ColSpanMd="12" Visible=@IsAlternateEmail>
             <DxTextBox />
         </DxFormLayoutItem>
-        <DxFormLayoutItem Caption="Retype Alternate Email:" ColSpanMd="12" Visible=@IsAlternateEmail>
+        <DxFormLayoutItem Caption="Retype Alternate E-mail:" ColSpanMd="12" Visible=@IsAlternateEmail>
             <DxTextBox />
         </DxFormLayoutItem>
     </DxFormLayoutGroup>
-    <DxFormLayoutGroup Visible=@IsPhone>
+    <DxFormLayoutGroup Visible="@IsPhone" Caption="Contact Details:">
         <DxFormLayoutItem Caption="Code:" ColSpanMd="3">
             <DxTextBox />
         </DxFormLayoutItem>
@@ -57,7 +42,7 @@
             <DxTextBox />
         </DxFormLayoutItem>
     </DxFormLayoutGroup>
-    <DxFormLayoutGroup Visible=@IsPost>
+    <DxFormLayoutGroup Visible="@IsPost" Caption="Contact Details:">
         <DxFormLayoutItem Caption="Address:" ColSpanMd="12">
             <DxTextBox />
         </DxFormLayoutItem>
@@ -71,9 +56,12 @@
 </DxFormLayout>
 
 @code {
-    bool IsEmail = true;
-    bool IsPhone = false;
-    bool IsPost = false;
+    bool IsEmail => PreferredContactMethod == "E-mail";
+    bool IsPhone => PreferredContactMethod == "Phone";
+    bool IsPost => PreferredContactMethod == "Post";
     bool isAlternateEmail = false;
     bool IsAlternateEmail { get => isAlternateEmail; set { isAlternateEmail = value; InvokeAsync(StateHasChanged); } }
+
+    IEnumerable<string> ContactMethod = new[] { "E-mail", "Phone", "Post" };
+    string PreferredContactMethod { get; set; } = "E-mail";
 }

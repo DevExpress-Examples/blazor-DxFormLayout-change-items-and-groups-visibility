@@ -3,12 +3,24 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T803618)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [Index.razor](./CS/DxFormLayoutSelectionDependentInputs/Pages/Index.razor)
-<!-- default file list end -->
+# Blazor Form Layout - Change visibility of the DxFormLayout's items and groups conditionally
 
-### Blazor Form Layout - How to change the visibility of DxFormLayout's items and groups
+The following example shows how to implement a form that dynamically displays additional inputs based on user choice.
 
-This demo illustrates how to implement a form that dynamically exposes different additional inputs depending upon the initial selection made by an end-user. The visibility of these additional inputs is specified using the Visible property of the DxFormLayoutGroup and DxFormLayoutItem elements. 
+![Final Layout](/result.png)
+
+A user chooses one of the options in a Radio Group. Based on the selected value, the [Visible](https://docs.devexpress.com/Blazor/DevExpress.Blazor.Base.FormLayoutItemBase.Visible) property of the `DxFormLayoutGroup` and `DxFormLayoutItem` UI elements changes and displays or hides additional inputs. 
+
+## Files to Review
+
+[Index.razor](./CS/DxFormLayoutSelectionDependentInputs/Pages/Index.razor)
+
+## Documentation
+
+* [DxRadioGroup](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxRadioGroup-2.ValueChanged)
+* [DxFormLayout](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxFormLayout)
+
+## More Examples
+
+[Form Layout - Collapsible Groups](https://github.com/DevExpress-Examples/blazor-form-layout-collapsible-groups)
