@@ -10,7 +10,7 @@ The following example shows how to implement a form that dynamically displays ad
 
 ![Final Layout](/result.png)
 
-A user chooses one of the options in Radio Group. Based on selected value, the [Visible](https://docs.devexpress.com/Blazor/DevExpress.Blazor.Base.FormLayoutItemBase.Visible) property of the `DxFormLayoutGroup` and `DxFormLayoutItem` UI elements changes and displays or hides additional inputs. 
+A user chooses one of the options in a Radio Group. Based on the selected value, the [Visible](https://docs.devexpress.com/Blazor/DevExpress.Blazor.Base.FormLayoutItemBase.Visible) property of the `DxFormLayoutGroup` and `DxFormLayoutItem` UI elements changes and displays or hides additional inputs. 
 
 ## Files to Review
 
