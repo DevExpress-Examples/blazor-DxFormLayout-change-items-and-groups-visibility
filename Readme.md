@@ -14,7 +14,7 @@
 
 This demo illustrates how to implement a form that dynamically exposes different additional inputs depending upon the initial selection made by an end-user. The visibility of these additional inputs is specified using the Visible property of the DxFormLayoutGroup and DxFormLayoutItem elements. 
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-formlayout-change-items-and-groups-visibility&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=blazor-formlayout-change-items-and-groups-visibility&~~~was_helpful=no)
 
